@@ -15,9 +15,20 @@ from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from django.contrib.auth import views as auth_views
 from django import forms
-from .forms import UserRegistrationForm
+from .forms import UserRegistrationForm, NewGameForm
 from django.contrib.auth.models import User
+from .models import Game
 from django.http import HttpResponseRedirect
+
+def newGame(request):
+    if request.method == 'POST':
+        form = NewGameForm(request.POST)
+        if form.is_valid():
+            gameObj = form.cleaned_data
+            name = gameObj['name']
+            password =  gameObj['password']
+            host =  gameObj['host']
+            Game(name, password, host).save()
 
 def register(request):
     if request.method == 'POST':

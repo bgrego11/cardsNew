@@ -15,7 +15,25 @@ class Card(models.Model):
         return self.text
 
 
-# class Choice(models.Model):
-#     question = models.ForeignKey(Question, on_delete=models.CASCADE)
-#     choice_text = models.CharField(max_length=200)
-#     votes = models.IntegerField(default=0)
+class Game(models.Model):
+    name = models.CharField(max_length=200)
+    password = models.CharField(max_length=200)
+    host = models.IntegerField()
+    isFull = models.IntegerField(default=0)
+    isStarted = models.IntegerField(default=0)
+    isPaused = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.name
+
+class Players(models.Model):
+    u_id = models.IntegerField()
+    game = models.ForeignKey('Game')
+    playerNum = models.IntegerField()
+    isDealer = models.IntegerField(default=0)
+
+
+
+
+
+
