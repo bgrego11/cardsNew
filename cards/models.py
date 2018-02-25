@@ -28,7 +28,7 @@ class Game(models.Model):
 
 class Players(models.Model):
     u_id = models.IntegerField()
-    game = models.ForeignKey('Game')
+    game = models.ForeignKey('Game', on_delete=models.CASCADE)
     playerNum = models.IntegerField()
     isDealer = models.IntegerField(default=0)
 

@@ -31,6 +31,5 @@ class NewGameForm(forms.Form):
     )
     host = forms.IntegerField(
         required = True,
-        label = 'host',
-        max_length = 32,
+        label = 'host'
     )
