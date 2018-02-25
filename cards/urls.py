@@ -1,8 +1,11 @@
 from django.conf.urls import include, url
-from django.contrib import admin
+from django.contrib import admin,auth
 
-from . import views
+
+from .views import index, register
 
 urlpatterns = [
-    url(r'^$', views.index, name='index'),
+    url(r'^$', index, name='index'),
+    url(r'^register/', register)
+    
 ]
