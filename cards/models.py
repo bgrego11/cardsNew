@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from random import shuffle
 
 # Create your models here.
 
@@ -13,6 +14,10 @@ class Card(models.Model):
     
     def __str__(self):
         return self.text
+
+
+    
+    
 
 
 class Game(models.Model):
@@ -28,9 +33,21 @@ class Game(models.Model):
     
     def getPlayers(self):
         return Player.objects.filter(game= self)
-        
+
     def getPlayerCount(self):
         return self.getPlayers().latest('playerNum').playerNum
+
+    def getCards(self):
+        cards = Card.objects.filter()
+        for i in cards:
+            cardOwners(game=self, card=i).save()
+    def dealCards(self):
+        pass
+        # whites = shuffle(list(Card.objects.filter(color="white")))
+        # blacks = shuffle(list(Card.objects.filter(color="black")))
+        # players = self.getPlayers()
+
+
 
 class Player(models.Model):
     u_id = models.IntegerField()
