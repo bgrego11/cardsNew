@@ -34,9 +34,9 @@ def register(request):
                 return HttpResponseRedirect('/cards')
             else:
                 raise forms.ValidationError('Looks like a username with that email or password already exists')
-    else:
-        form = UserRegistrationForm()
-    return render(request, 'cards/register.html', {'form' : form})
+    # else:
+    #     form = UserRegistrationForm()
+    # return render(request, 'cards/register.html', {'form' : form})
 
 # def signup(request):
 #     if request.method == 'POST':
