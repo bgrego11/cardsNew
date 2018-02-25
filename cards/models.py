@@ -25,12 +25,26 @@ class Game(models.Model):
 
     def __str__(self):
         return self.name
+    
+    def getPlayers(self):
+        return Player.objects.filter(game= self)
+        
+    def getPlayerCount(self):
+        return self.getPlayers().latest('playerNum').playerNum
 
-class Players(models.Model):
+class Player(models.Model):
     u_id = models.IntegerField()
     game = models.ForeignKey('Game', on_delete=models.CASCADE)
     playerNum = models.IntegerField()
     isDealer = models.IntegerField(default=0)
+
+     
+
+class cardOwners(models.Model):
+    player = models.ForeignKey('Player', on_delete=models.CASCADE, default=0)
+    game = models.ForeignKey('Game', on_delete=models.CASCADE)
+    card = models.ForeignKey('Card', on_delete=models.CASCADE, default=0)
+    
 
 
 
