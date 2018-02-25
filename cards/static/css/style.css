@@ -545,3 +545,25 @@ a.article, a.article:hover {
     top: 0;
     right: 0;
 }
+
+/* ---------------------------------------------------
+    game play
+----------------------------------------------------- */
+
+#gameTag {
+  text-align: center;
+  color: green;
+  background-color: blue;
+  height: 60%
+}
+
+#gametitle {
+  text-align: center;
+}
+
+#cardSpace {
+text-align: center;
+height: 20%;
+margin: auto;
+}
+
