@@ -3,7 +3,7 @@
 <b> To Run</b>
 <ol>
 <li> cd into cardsNew</li>
-<li> run <i>python manage.py runserver</i></li>
+<li> run <i>python manage.py runserver</i> in bash/terminal</li>
 <li> view at http://localhost:8000/cards/ </li>
 </ol>
 
