@@ -29,7 +29,9 @@ class NewGameForm(forms.Form):
         max_length = 32,
         widget = forms.PasswordInput()
     )
-    host = forms.IntegerField(
+    host = forms.CharField(
         required = True,
-        label = 'host'
+        label = 'host',
+        max_length = 32
+
     )

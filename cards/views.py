@@ -28,6 +28,7 @@ def newGame(request):
             name = gameObj['name']
             password =  gameObj['password']
             host =  gameObj['host']
+            print (name+ " " + str(host))
             Game(name, password, host).save()
 
 def register(request):
