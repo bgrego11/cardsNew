@@ -184,10 +184,40 @@
         </div>
       </div>
 
+                  <!-- Join Game Modal -->
 
-
-
-
+                  <div class="modal fade" id="joinModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                      <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Login</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                                  <form method="POST" action="../cards/newGame/">
+                                      {% csrf_token %} {{ form.as_p }}
+                                  <div class="form-group">
+                                    <label for="exampleInputEmail1">Game Name</label>
+                                    <input type="text" class="form-control" name="name" placeholder="Enter Game Name">
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="exampleInputPassword1">Password</label>
+                                      <input type="password" class="form-control" name="password" placeholder="Create Password">
+                                  </div>
+                                  <div id="hiddenjoinGame" class="form-group">
+                                      <input type="text" class="form-control" name="player" value="{{user.id}}">
+                                    </div>
+                                  <div class="modal-footer">
+                                          <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                                          <button type="submit" class="btn btn-danger" id="joinGame">join game</button>
+                                        </div>
+                              </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
 
                 <!-- Page Content Holder -->
                 <div id="content">

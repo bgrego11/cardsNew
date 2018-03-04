@@ -568,6 +568,10 @@ margin: auto;
 }
 
 #hiddenGame {
+  display: none;
+}
+
+#hiddenjoinGame {
   display: none
 }
 
