@@ -13,6 +13,7 @@
       <!-- Scrollbar Custom CSS -->
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
       <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+      <link rel="stylesheet" type="text/css" href="../../static/css/style.css" />
       <title>Cards Against Humanity
     </title>
 </head>
@@ -48,9 +49,7 @@
                                 <li><a href="#gameSubmenu" data-toggle="collapse" aria-expanded="false">Previous Games</a></li>
                                 <ul class="collapse list-unstyled" id="gameSubmenu">
                                     {% for game in games %}
-                                    {% for elem in game %}
-                                      <li><a>{{elem.name}}</a></li>
-                                    {% endfor %}
+                                      <li><a>{{game.name}}</a></li>
                                   {% endfor %}
                                 </ul>
                             </ul>
@@ -173,7 +172,7 @@
                         <input type="password" class="form-control" name="password" placeholder="Create Password">
                     </div>
                     <div id="hiddenGame" class="form-group">
-                        <input type="text" class="form-control" name="host" value="{{user.id}}">
+                        <input  type="text" class="form-control" name="host" value="{{user.id}}">
                       </div>
                     <div class="modal-footer">
                             <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
