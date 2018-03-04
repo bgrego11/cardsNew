@@ -23,7 +23,7 @@ class Card(models.Model):
 class Game(models.Model):
     name = models.CharField(max_length=200)
     password = models.CharField(max_length=200)
-    host = models.CharField(max_length=200)
+    host = models.IntegerField()
     isFull = models.IntegerField(default=0)
     isStarted = models.IntegerField(default=0)
     isPaused = models.IntegerField(default=0)
