@@ -45,10 +45,15 @@
                             <ul class="collapse list-unstyled" id="pageSubmenu">
                                 <li><a href="#" data-toggle="modal" data-target="#gameModal">Create Game</a></li>
                                 <li><a href="#">Join Game</a></li>
-                                <li><a href="#">Resume Game</a></li>
-                            
+                                <li><a href="#gameSubmenu" data-toggle="collapse" aria-expanded="false">Previous Games</a></li>
+                                <ul class="collapse list-unstyled" id="gameSubmenu">
+                                    {% for game in games %}
+                                    {% for elem in game %}
+                                      <li><a>{{elem.name}}</a></li>
+                                    {% endfor %}
+                                  {% endfor %}
+                                </ul>
                             </ul>
-                            
                         </li>
                         <li>
                             <a href="#">Portfolio</a>
@@ -212,7 +217,6 @@
 
 
               <div class="intro">
-                    <div class="animated-bar"></div>
                  
                     <div class="slide slide-a">
                        <div class="slide-content">
@@ -249,7 +253,6 @@
                           <button class="slide-d-child replay">Replay</button>
                        </div>
                     </div>
-                 
                  </div>
                  
     <footer>

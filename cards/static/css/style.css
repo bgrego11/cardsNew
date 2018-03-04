@@ -53,7 +53,7 @@ body {
   background: #fff;
   z-index: 9999;
   position: absolute;
-  top: 0;
+  bottom: 0;
   left: 0;
   -webkit-animation: bar 5s 3 linear;
           animation: bar 5s 3 linear;
