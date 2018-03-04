@@ -20,6 +20,8 @@ from django.contrib.auth.models import User
 from .models import Game
 from django.http import HttpResponseRedirect
 
+#pass game objects into cards page
+
 def newGame(request):
     if request.method == 'POST':
         form = NewGameForm(request.POST)
@@ -28,8 +30,9 @@ def newGame(request):
             name = gameObj['name']
             password =  gameObj['password']
             host =  gameObj['host']
-            print (name+ " " + str(host))
-            Game(name, password, host).save()
+            Game(name = name, password = password, host=host).save()
+
+            #return game page with game object attached
 
 def register(request):
     if request.method == 'POST':
