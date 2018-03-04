@@ -2,14 +2,6 @@
 from __future__ import unicode_literals
 
 from django.shortcuts import render
-
-# Create your views here.
-from django.http import HttpResponse
-
-
-def index(request):
-    return render(request, 'cards/home.html', context={'user': request.user})
-
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
@@ -17,8 +9,23 @@ from django.contrib.auth import views as auth_views
 from django import forms
 from .forms import UserRegistrationForm, NewGameForm
 from django.contrib.auth.models import User
-from .models import Game
+from .models import Game, Player
 from django.http import HttpResponseRedirect
+
+# Create your views here.
+from django.http import HttpResponse
+
+
+def index(request):
+    gameIds = list(Player.objects.filter(u_id=request.user.id).values_list('game', flat=True))
+    
+    games = list(Game.objects.filter(id__in=gameIds))
+    # games = playerObs.
+    # for i in games:
+    #     print i.name
+    return render(request, 'cards/home.html', context={'user': request.user,'games' : games})
+
+
 
 #pass game objects into cards page
 
@@ -30,7 +37,12 @@ def newGame(request):
             name = gameObj['name']
             password =  gameObj['password']
             host =  gameObj['host']
-            Game(name = name, password = password, host=host).save()
+            g = Game(name = name, password = password, host=host)
+            g.save()
+            Player(u_id=g.host, game=g, playerNum = 1).save()
+
+
+
 
             #return game page with game object attached
 
