@@ -567,3 +567,11 @@ height: 20%;
 margin: auto;
 }
 
+#hiddenGame {
+  display: hidden;
+}
+
+#hiddenjoinGame {
+  display: hidden;
+}
+
