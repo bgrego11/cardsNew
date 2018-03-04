@@ -34,3 +34,21 @@ class NewGameForm(forms.Form):
         label = 'host',
         
     )
+
+class JoinGameForm(forms.Form):
+    name = forms.CharField(
+        required = True,
+        label = 'name',
+        max_length = 32
+    )
+    password = forms.CharField(
+        required = True,
+        label = 'password',
+        max_length = 32,
+        widget = forms.PasswordInput()
+    )
+    player = forms.IntegerField(
+        required = True,
+        label = 'player',
+        
+    )

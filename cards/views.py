@@ -2,23 +2,30 @@
 from __future__ import unicode_literals
 
 from django.shortcuts import render
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.forms import UserCreationForm
+from django.shortcuts import render, redirect
+from django.contrib.auth import views as auth_views
+from django import forms
+from .forms import UserRegistrationForm, NewGameForm, JoinGameForm
+from django.contrib.auth.models import User
+from .models import Game, Player
+from django.http import HttpResponseRedirect
 
 # Create your views here.
 from django.http import HttpResponse
 
 
 def index(request):
-    return render(request, 'cards/home.html', context={'user': request.user})
+    gameIds = list(Player.objects.filter(u_id=request.user.id).values_list('game', flat=True))
+    
+    games = list(Game.objects.filter(id__in=gameIds))
+    # games = playerObs.
+    # for i in games:
+    #     print i.name
+    return render(request, 'cards/home.html', context={'user': request.user,'games' : games})
 
-from django.contrib.auth import login, authenticate
-from django.contrib.auth.forms import UserCreationForm
-from django.shortcuts import render, redirect
-from django.contrib.auth import views as auth_views
-from django import forms
-from .forms import UserRegistrationForm, NewGameForm
-from django.contrib.auth.models import User
-from .models import Game
-from django.http import HttpResponseRedirect
+
 
 #pass game objects into cards page
 
@@ -30,7 +37,34 @@ def newGame(request):
             name = gameObj['name']
             password =  gameObj['password']
             host =  gameObj['host']
-            Game(name = name, password = password, host=host).save()
+            g = Game(name = name, password = password, host=host)
+            g.save()
+            Player(u_id=g.host, game=g, playerNum = 1).save()
+            return render(request, 'cards/gamePlay.html', {'game' : g})
+
+def joinGame(request):
+    if request.method == 'POST':
+        form = JoinGameForm(request.POST)
+        if form.is_valid():
+            gameObj = form.cleaned_data
+            name = gameObj['name']
+            password =  gameObj['password']
+            player =  gameObj['player']
+            game = Game.objects.filter(name=name, password=password)
+            if game is not None:
+                if game.getPlayerCount() < 6:
+                    Player(u_id=player, game=game, playerNum = game.getPlayerCount()+1 ).save()
+                    return render(request, 'cards/gamePlay.html', {'game' : g})
+                else:
+                    return redirect(index)
+
+
+            # g = Game(name = name, password = password, host=host)
+            # g.save()
+            # Player(u_id=g.host, game=g, playerNum = 1).save()
+            return render(request, 'cards/gamePlay.html', {'game' : g})
+
+
 
             #return game page with game object attached
 
@@ -66,4 +100,3 @@ def register(request):
 #     else:
 #         form = UserCreationForm()
 #     return render(request, 'home.html', {'form': form})
-
