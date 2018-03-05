@@ -55,7 +55,7 @@ def joinGame(request):
                 if game is not None:
                     if game.getPlayerCount() < 6:
                         Player(u_id=player, game=game, playerNum = game.getPlayerCount()+1 ).save()
-                        return render(request, 'cards/gamePlay.html', {'game' : g})
+                        return render(request, 'cards/gamePlay.html', {'game' : game})
                     else:
                         return redirect(index)
             except:
@@ -65,7 +65,7 @@ def joinGame(request):
             # g = Game(name = name, password = password, host=host)
             # g.save()
             # Player(u_id=g.host, game=g, playerNum = 1).save()
-            return render(request, 'cards/gamePlay.html', {'game' : g})
+            # return render(request, 'cards/gamePlay.html', {'game' : g})
 
 
 
