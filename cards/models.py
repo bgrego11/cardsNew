@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 
 from django.db import models
 from random import shuffle
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -54,6 +55,9 @@ class Player(models.Model):
     game = models.ForeignKey('Game', on_delete=models.CASCADE)
     playerNum = models.IntegerField()
     isDealer = models.IntegerField(default=0)
+
+    def __str__(self):
+        return "Name:   " + User.objects.get(id=self.u_id).username  + "    Game:   " + self.game.name
 
      
 

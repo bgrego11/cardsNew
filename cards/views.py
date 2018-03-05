@@ -50,13 +50,16 @@ def joinGame(request):
             name = gameObj['name']
             password =  gameObj['password']
             player =  gameObj['player']
-            game = Game.objects.filter(name=name, password=password)
-            if game is not None:
-                if game.getPlayerCount() < 6:
-                    Player(u_id=player, game=game, playerNum = game.getPlayerCount()+1 ).save()
-                    return render(request, 'cards/gamePlay.html', {'game' : g})
-                else:
-                    return redirect(index)
+            try:
+                game = Game.objects.get(name=name, password=password)
+                if game is not None:
+                    if game.getPlayerCount() < 6:
+                        Player(u_id=player, game=game, playerNum = game.getPlayerCount()+1 ).save()
+                        return render(request, 'cards/gamePlay.html', {'game' : g})
+                    else:
+                        return redirect(index)
+            except:
+                return redirect(index)
 
 
             # g = Game(name = name, password = password, host=host)
