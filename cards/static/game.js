@@ -2,7 +2,9 @@ $(document).ready(function () {
 
     'use strict';
 
-
+$("#dealGame").on('click', function () { 
+console.log($("#dealerselect").val())
+});
     
     // ask question to start game
 
