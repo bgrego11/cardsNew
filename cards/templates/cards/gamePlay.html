@@ -91,9 +91,6 @@
 <div class="col-lg-12 col-md-12 col-xl-12" id="gametitle">
     <h1>Cards Against Humanity</h1>
     <h6>game is {{game.name}}</h6>
-    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#startGame">
-        Start Game
-      </button>
 </div>
 
 
@@ -115,42 +112,6 @@ This is where the cards will go
 </div>
      
 </div>
-
-
-<div class="modal fade" id="startGame" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Start the game</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-                <!-- <form method="POST" action="../cards/newGame/"> -->
-                <div class="form-group">
-                  <label for="game">When was your most recent bowel movement?</label>
-                  <br>
-                  <select class="form-control" id="dealerselect">
-                    <option value=1>Within the last hour</option>
-                    <option value=2>Within the last two hours</option>
-                    <option value=3>Within the last three hours</option>
-                    <option value=4>Within the last 8 hours</option>
-                    <option value=5>More than 8 hours ago</option>
-                  </select>
-                </div>
-                <div id="hiddenGame" class="form-group">
-                    <input  type="text" class="form-control" name="host" value="{{user.id}}">
-                  </div>
-                <div class="modal-footer">
-                        <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-danger" id="dealGame" data-dismiss="modal">create game</button>
-                      </div>
-            </form>
-        </div>
-      </div>
-    </div>
-  </div>
 
 
 
@@ -185,5 +146,4 @@ This is where the cards will go
             <!-- jQuery Custom Scroller CDN -->
             <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
     <script src="../../static/script.js"></script>
-    <script src="../../static/game.js"></script>
     </html>
